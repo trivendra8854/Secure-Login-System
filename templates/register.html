@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Register - Secure Login System{% endblock %}
+{% block content %}
+  <h1>Register</h1>
+  <form method="post" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <label>Username
+      <input name="username" required pattern="[A-Za-z0-9_.-]{3,24}" value="{{ request.form.username or '' }}">
+    </label>
+    <label>Email
+      <input name="email" type="email" required value="{{ request.form.email or '' }}">
+    </label>
+    <label>Password
+      <input name="password" type="password" required>
+    </label>
+    <label>Confirm password
+      <input name="confirm_password" type="password" required>
+    </label>
+    <button type="submit" class="btn">Create account</button>
+  </form>
+  <p>Already have an account? <a href="{{ url_for('login') }}">Sign in</a></p>
+{% endblock %}

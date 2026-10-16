@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard - Secure Login System{% endblock %}
+{% block content %}
+  <h1>Dashboard</h1>
+  <p>Welcome back, {{ user.username }} ({{ user.email }}).</p>
+
+  <section>
+    <h2>Two-factor authentication (2FA)</h2>
+    {% if user.twofa_enabled %}
+      <p>2FA is enabled on your account.</p>
+      <form method="post" action="{{ url_for('disable_2fa') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <label>Confirm password to disable
+          <input name="password" type="password" required>
+        </label>
+        <button type="submit" class="btn">Disable 2FA</button>
+      </form>
+    {% else %}
+      <p>2FA is not enabled.</p>
+      <p><a class="btn" href="{{ url_for('setup_2fa') }}">Set up two-factor authentication</a></p>
+    {% endif %}
+  </section>
+
+{% endblock %}

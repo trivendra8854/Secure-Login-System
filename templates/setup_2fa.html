@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Set up 2FA - Secure Login System{% endblock %}
+{% block content %}
+  <h1>Set up two-factor authentication</h1>
+  <p>Scan the QR code in your authenticator app or enter this secret manually:</p>
+
+  <pre class="secret">{{ secret }}</pre>
+  <p>If your app supports provisioning URIs/QR codes, you can use this link with a QR generator:
+  <code>{{ provisioning_uri }}</code></p>
+
+  <p>After adding the account to your authenticator app, enter the current 6-digit code to confirm.</p>
+  <form method="post" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <label>Code
+      <input name="code" inputmode="numeric" pattern="\d{6}" required>
+    </label>
+    <button type="submit" class="btn">Enable 2FA</button>
+  </form>
+{% endblock %}

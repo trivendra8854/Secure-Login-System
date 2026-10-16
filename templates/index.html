@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Home - Secure Login System{% endblock %}
+{% block content %}
+  <h1>Welcome</h1>
+  <p>This is a demo secure login system built with Flask.</p>
+  {% if not session.get('user_id') %}
+    <p><a class="btn" href="{{ url_for('register') }}">Create an account</a> <a class="btn" href="{{ url_for('login') }}">Sign in</a></p>
+  {% else %}
+    <p><a class="btn" href="{{ url_for('dashboard') }}">Go to your dashboard</a></p>
+  {% endif %}
+{% endblock %}

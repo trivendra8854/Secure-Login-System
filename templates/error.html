@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}Error - Secure Login System{% endblock %}
+{% block content %}
+  <h1>Error {{ code }}</h1>
+  <p>{{ message }}</p>
+  <p><a href="{{ url_for('index') }}" class="btn">Return home</a></p>
+{% endblock %}
